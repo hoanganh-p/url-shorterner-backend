@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WorksSpace\\dotnet\\UrlShortener\\UrlShortener\\UrlShortener.csproj": {}
+    "D:\\WorksSpace\\dotnet\\UrlShortener.Api\\UrlShortener\\UrlShortener.csproj": {}
   },
   "projects": {
-    "D:\\WorksSpace\\dotnet\\UrlShortener\\UrlShortener\\UrlShortener.csproj": {
+    "D:\\WorksSpace\\dotnet\\UrlShortener.Api\\UrlShortener\\UrlShortener.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WorksSpace\\dotnet\\UrlShortener\\UrlShortener\\UrlShortener.csproj",
+        "projectUniqueName": "D:\\WorksSpace\\dotnet\\UrlShortener.Api\\UrlShortener\\UrlShortener.csproj",
         "projectName": "UrlShortener",
-        "projectPath": "D:\\WorksSpace\\dotnet\\UrlShortener\\UrlShortener\\UrlShortener.csproj",
+        "projectPath": "D:\\WorksSpace\\dotnet\\UrlShortener.Api\\UrlShortener\\UrlShortener.csproj",
         "packagesPath": "C:\\Users\\Bon\\.nuget\\packages\\",
-        "outputPath": "D:\\WorksSpace\\dotnet\\UrlShortener\\UrlShortener\\obj\\",
+        "outputPath": "D:\\WorksSpace\\dotnet\\UrlShortener.Api\\UrlShortener\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

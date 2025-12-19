@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Je6GrIwZl+o=",
+  "dgSpecHash": "A95eMSN8Fss=",
   "success": true,
-  "projectFilePath": "D:\\WorksSpace\\dotnet\\UrlShortener\\UrlShortener\\UrlShortener.csproj",
+  "projectFilePath": "D:\\WorksSpace\\dotnet\\UrlShortener.Api\\UrlShortener\\UrlShortener.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bon\\.nuget\\packages\\awssdk.core\\4.0.3.3\\awssdk.core.4.0.3.3.nupkg.sha512",
     "C:\\Users\\Bon\\.nuget\\packages\\awssdk.dynamodbv2\\4.0.10.1\\awssdk.dynamodbv2.4.0.10.1.nupkg.sha512",
