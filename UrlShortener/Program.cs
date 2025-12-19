@@ -4,10 +4,9 @@ using UrlShortener.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure AWS options from configuration (appsettings or environment)
+// Configure AWS options
 var awsOptions = builder.Configuration.GetAWSOptions();
 
-// If keys are present in configuration (not recommended for production), use them
 var accessKey = builder.Configuration.GetValue<string>("AWS:AccessKeyId");
 var secretKey = builder.Configuration.GetValue<string>("AWS:SecretAccessKey");
 if (!string.IsNullOrEmpty(accessKey) && !string.IsNullOrEmpty(secretKey))
@@ -54,5 +53,13 @@ app.UseCors("AllowAll");
 app.MapControllers();
 
 app.MapGet("/", () => "URL Shortener API Running");
+
+app.MapGet("/{code}", async (string code, IUrlService urlService) =>
+{
+    var data = await urlService.GetAsync(code);
+    if (data == null) return Results.NotFound();
+    return Results.Redirect(data.OriginalUrl);
+});
+
 
 app.Run();

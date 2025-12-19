@@ -66,7 +66,6 @@ public class UrlService : IUrlService
             {
                 TableName = _tableName,
                 Item = itemAttributes,
-                // Ensure we only put if ShortCode does not already exist (avoid collision overwrite)
                 ConditionExpression = "attribute_not_exists(ShortCode)"
             };
 

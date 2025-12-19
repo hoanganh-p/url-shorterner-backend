@@ -26,7 +26,6 @@ public class ShortenerController : ControllerBase
 
         var created = await _urlService.CreateAsync(req.OriginalUrl);
 
-        // Build short URL from current request (works in dev/prod without hard-coding domain)
         var shortUrl = $"{Request.Scheme}://{Request.Host}/{created.ShortCode}";
 
         var response = new CreateResponse
@@ -35,7 +34,6 @@ public class ShortenerController : ControllerBase
             ShortUrl = shortUrl
         };
 
-        // Return 201 Created and Location header pointing to the redirect endpoint
         return CreatedAtAction(nameof(RedirectToOriginal), new { code = created.ShortCode }, response);
     }
 
