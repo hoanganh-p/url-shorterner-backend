@@ -72,3 +72,13 @@ D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\obj\Debug\net9.0\refint\UrlSh
 D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\obj\Debug\net9.0\UrlShortener.pdb
 D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\obj\Debug\net9.0\UrlShortener.genruntimeconfig.cache
 D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\obj\Debug\net9.0\ref\UrlShortener.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.APIGatewayEvents.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.ApplicationLoadBalancerEvents.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.AspNetCoreServer.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.AspNetCoreServer.Hosting.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.Core.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.Logging.AspNetCore.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.RuntimeSupport.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.Serialization.SystemTextJson.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\SnapshotRestore.Registry.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net9.0\Amazon.Lambda.Annotations.dll

@@ -26,7 +26,8 @@ public class ShortenerController : ControllerBase
 
         var created = await _urlService.CreateAsync(req.OriginalUrl);
 
-        var shortUrl = $"{Request.Scheme}://{Request.Host}/{created.ShortCode}";
+        //var shortUrl = $"{Request.Scheme}://{Request.Host}/{created.ShortCode}";
+        var shortUrl = $"{Request.Scheme}://{Request.Host}/dev/api/shortener/{created.ShortCode}"; ;
 
         var response = new CreateResponse
         {
@@ -34,6 +35,7 @@ public class ShortenerController : ControllerBase
             ShortUrl = shortUrl
         };
 
+        //return Ok(response);
         return CreatedAtAction(nameof(RedirectToOriginal), new { code = created.ShortCode }, response);
     }
 
