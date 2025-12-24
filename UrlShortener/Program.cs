@@ -1,15 +1,19 @@
 using Amazon.DynamoDBv2;
+using UrlShortener.Models;
 using UrlShortener.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//JWT
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+
 
 // Configure AWS options
 var awsOptions = builder.Configuration.GetAWSOptions();
 builder.Services.AddDefaultAWSOptions(awsOptions);
 
 builder.Services.AddAWSService<IAmazonDynamoDB>();
-
-builder.Services.AddControllers();
 
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
 
@@ -36,6 +40,9 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
+
 
 var app = builder.Build();
 
@@ -44,6 +51,7 @@ app.UseCors("AllowCors");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
