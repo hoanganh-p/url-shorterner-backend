@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using UrlShortener.Models;
+using UrlShortener.Services.Interfaces;
 
 namespace UrlShortener.Services
 {

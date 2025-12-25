@@ -1,5 +1,5 @@
 ﻿using UrlShortener.Models;
-namespace UrlShortener.Services;
+namespace UrlShortener.Services.Interfaces;
 public interface IUrlService
 {
     Task<UrlMapping> CreateAsync(string originalUrl);

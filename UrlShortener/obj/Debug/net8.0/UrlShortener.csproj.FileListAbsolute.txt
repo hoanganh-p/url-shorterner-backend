@@ -49,3 +49,12 @@ D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\obj\Debug\net8.0\UrlShortener
 D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\obj\Debug\net8.0\UrlShortener.genruntimeconfig.cache
 D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\obj\Debug\net8.0\ref\UrlShortener.dll
 D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\aws-lambda-tools-defaults.json
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\WorksSpace\dotnet\UrlShortener.Api\UrlShortener\bin\Debug\net8.0\BCrypt.Net-Next.dll

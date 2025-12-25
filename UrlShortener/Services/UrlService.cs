@@ -4,6 +4,7 @@ using System.Text;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using UrlShortener.Models;
+using UrlShortener.Services.Interfaces;
 
 namespace UrlShortener.Services;
 

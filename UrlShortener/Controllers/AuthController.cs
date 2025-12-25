@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UrlShortener.Services;
+using UrlShortener.Services.Interfaces;
+using UrlShortener.DTOs;
 
 namespace UrlShortener.Controllers
 {
@@ -7,34 +8,23 @@ namespace UrlShortener.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IJwtService _jwtService;
+        private readonly IAuthService _authService;
 
-        public AuthController(IJwtService jwtService)
+        public AuthController(IAuthService authService)
         {
-            _jwtService = jwtService;
+            _authService = authService;
         }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest request)
-        {
-            if (request.Username == "admin" && request.Password == "123456")
-            {
-                var token = _jwtService.GenerateToken(
-                    userId: "1",
-                    username: request.Username,
-                    roles: new[] { "Admin" }
-                );
+        //[HttpPost("login")]
+        //public async Task<IActionResult> Login([FromBody] LoginRequest req)
+        //{
+        //    var user = await _authService.GetByEmailAsync(req.Email);
+        //    if (user == null || !BCrypt.Net.BCrypt.Verify(req.Password, user.PasswordHash))
+        //        return Unauthorized();
 
-                return Ok(new { token });
-            }
-
-            return Unauthorized(new { message = "Invalid credentials" });
-        }
+        //    var token = _authService.GenerateJwt(user);
+        //    return Ok(new { accessToken = token });
+        //}
     }
 
-    public class LoginRequest
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-    }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
-using UrlShortener.Services;
+using UrlShortener.Services.Interfaces;
+using UrlShortener.DTOs;
 
 namespace UrlShortener.Controllers;
 
@@ -47,16 +46,4 @@ public class ShortenerController : ControllerBase
 
         return Redirect(data.OriginalUrl);
     }
-}
-
-public class CreateRequest
-{
-    [Required]
-    public string OriginalUrl { get; set; }
-}
-
-public class CreateResponse
-{
-    public string ShortCode { get; set; }
-    public string ShortUrl { get; set; }
 }

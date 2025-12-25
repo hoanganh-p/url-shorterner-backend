@@ -2,13 +2,15 @@
 
 namespace UrlShortener.Models;
 
-[DynamoDBTable("UrlMappings")]
+[DynamoDBTable("UrlMapping")]
 public class UrlMapping
 {
     [DynamoDBHashKey]
-    public string ShortCode { get; set; }
+    public string ShortCode { get; set; } = null!;
 
-    public string OriginalUrl { get; set; }
+    [DynamoDBProperty]
+    public string OriginalUrl { get; set; } = null!;
 
-    public DateTime CreatedAt { get; set; }
+    [DynamoDBProperty]
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
