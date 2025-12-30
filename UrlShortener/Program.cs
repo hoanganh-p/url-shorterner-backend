@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using UrlShortener.Models;
+using UrlShortener.Repositories;
 using UrlShortener.Services;
 using UrlShortener.Services.Interfaces;
 
@@ -22,13 +23,19 @@ builder.Services.AddAWSService<IAmazonDynamoDB>();
 builder.Services.AddScoped<IDynamoDBContext>(provider =>
 {
     var client = provider.GetRequiredService<IAmazonDynamoDB>();
-    return new DynamoDBContext(client);
+    var config = new DynamoDBContextConfig { Conversion = DynamoDBEntryConversion.V2 };
+#pragma warning disable CS0618 // Type or member is obsolete
+    return new DynamoDBContext(client, config);
+#pragma warning restore CS0618 // Type or member is obsolete
 });
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
 
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUrlRepository, UrlRepository>();
 builder.Services.AddScoped<IUrlService, UrlService>();
 
 // Authentication
@@ -63,7 +70,7 @@ builder.Services.AddCors(options =>
         {
             if (builder.Environment.IsDevelopment())
             {
-                policy.WithOrigins("http://127.0.0.1:5500")
+                policy.WithOrigins("http://localhost:3000")
                     .AllowAnyHeader()
                     .AllowAnyMethod();
             }
@@ -89,11 +96,11 @@ app.MapControllers();
 
 app.MapGet("/", () => "URL Shortener API Running");
 
-//app.MapGet("/{code}", async (string code, IUrlService urlService) =>
-//{
-//    var data = await urlService.GetAsync(code);
-//    if (data == null) return Results.NotFound();
-//    return Results.Redirect(data.OriginalUrl);
-//});
+app.MapGet("/{code}", async (string code, IUrlService urlService) =>
+{
+    var data = await urlService.GetAsync(code);
+    if (data == null) return Results.NotFound();
+    return Results.Redirect(data.OriginalUrl);
+});
 
 app.Run();

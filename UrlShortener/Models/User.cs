@@ -8,23 +8,22 @@ namespace UrlShortener.Models
         [DynamoDBHashKey]
         public string UserId { get; set; } = null!;
 
-        [DynamoDBProperty("Username")]
+        [DynamoDBProperty]
         public string Username { get; set; } = null!;
 
         [DynamoDBProperty]
         public string PasswordHash { get; set; } = null!;
 
-        //[DynamoDBGlobalSecondaryIndexHashKey("EmailIndex")]
         [DynamoDBProperty]
         public string Email { get; set; } = null!;
 
-        [DynamoDBProperty("Role")]
+        [DynamoDBProperty]
         public string Role { get; set; } = "User";
 
         [DynamoDBProperty]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        [DynamoDBProperty("IsActive")]
+        [DynamoDBProperty]
         public bool IsActive { get; set; } = true;
     }
 

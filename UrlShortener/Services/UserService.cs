@@ -1,34 +1,26 @@
-﻿using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.DocumentModel;
-using UrlShortener.Models;
+﻿using UrlShortener.Models;
+using UrlShortener.Repositories;
 using UrlShortener.Services.Interfaces;
 
 namespace UrlShortener.Services
 {
     public class UserService : IUserService
     {
-        private readonly DynamoDBContext _context;
+        private readonly IUserRepository _repository;
 
-        public UserService(IAmazonDynamoDB dynamoDb)
+        public UserService(IUserRepository repository)
         {
-            _context = new DynamoDBContext(dynamoDb);
+            _repository = repository;
         }
 
-        public async Task<User?> GetUserByUsernameAsync(string username)
+        public Task<User?> GetUserByUsernameAsync(string username)
         {
-            var search = _context.ScanAsync<User>(new[]
-            {
-                new ScanCondition("Username", ScanOperator.Equal, username)
-            });
-
-            var users = await search.GetNextSetAsync();
-            return users.FirstOrDefault();
+            return _repository.GetByUsernameAsync(username);
         }
 
-        public async Task<User?> GetUserByIdAsync(string userId)
+        public Task<User?> GetUserByIdAsync(string userId)
         {
-            return await _context.LoadAsync<User>(userId);
+            return _repository.GetByIdAsync(userId);
         }
 
         public async Task<bool> CreateUserAsync(User user)
@@ -46,7 +38,7 @@ namespace UrlShortener.Services
                 user.CreatedAt = DateTime.UtcNow;
                 user.PasswordHash = HashPassword(user.PasswordHash); // Hash password before saving
 
-                await _context.SaveAsync(user);
+                await _repository.SaveAsync(user);
                 return true;
             }
             catch

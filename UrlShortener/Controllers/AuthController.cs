@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using UrlShortener.DTOs;
 using UrlShortener.Models;
-using UrlShortener.Services;
 using UrlShortener.Services.Interfaces;
 
 namespace UrlShortener.Controllers
@@ -65,9 +64,9 @@ namespace UrlShortener.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
+            if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password) || string.IsNullOrEmpty(request.Email))
             {
-                return BadRequest(new { message = "Username and password are required" });
+                return BadRequest(new { message = "Username, password, and email are required" });
             }
 
             if (request.Password.Length < 6)

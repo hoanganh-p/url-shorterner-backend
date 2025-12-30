@@ -1,30 +1,27 @@
-﻿using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.DocumentModel;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using UrlShortener.Models;
+using UrlShortener.Repositories;
 using UrlShortener.Services.Interfaces;
 
 namespace UrlShortener.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly IDynamoDBContext _context;
+        private readonly IAuthRepository _repository;
         private readonly JwtSettings _jwtSettings;
 
-        public AuthService(IDynamoDBContext context, JwtSettings jwtSettings)
+        public AuthService(IAuthRepository repository, JwtSettings jwtSettings)
         {
-            _context = context;
+            _repository = repository;
             _jwtSettings = jwtSettings;
         }
 
-        public async Task<User?> GetByEmailAsync(string email)
+        public Task<User?> GetByEmailAsync(string email)
         {
-            var users = await _context.QueryAsync<User>(email, new DynamoDBOperationConfig { IndexName = "EmailIndex" }).GetRemainingAsync();
-
-            return users.FirstOrDefault();
+            return _repository.GetByEmailAsync(email);
         }
 
 
