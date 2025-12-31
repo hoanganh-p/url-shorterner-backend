@@ -12,13 +12,13 @@ dotnet restore
 dotnet run --project UrlShortener/UrlShortener.csproj
 ```
 
-- Frontend (React):
+<!-- - Frontend (React):
 
 ```powershell
 cd ..\..\reactjs\url-shortener-frontend
 npm install
 npm start
-```
+``` -->
 
 Tests:
 
