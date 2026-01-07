@@ -43,7 +43,4 @@ app.publish/
 aws-lambda-tools-defaults.json
 
 # Secrets and sensitive files
-appsettings.Development.json
-appsettings.Local.json
-appsettings.*.json
 secrets.json
