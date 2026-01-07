@@ -3,7 +3,7 @@ using Amazon.DynamoDBv2.DataModel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using UrlShortener.Api.Models;
+using UrlShortener.Api.Options;
 using UrlShortener.Api.Repositories;
 using UrlShortener.Api.Services;
 using UrlShortener.Api.Services.Interfaces;
@@ -11,10 +11,13 @@ using UrlShortener.Api.Services.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 //JWT
-builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
-var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>() 
-    ?? throw new InvalidOperationException("JwtSettings is not configured properly");
-builder.Services.AddSingleton(jwtSettings);
+builder.Services.AddOptions<JwtOptions>()
+    .Bind(builder.Configuration.GetSection(JwtOptions.SectionName))
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
+var jwtOptions = builder.Configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>() 
+    ?? throw new InvalidOperationException("JwtOptions is not configured properly");
 
 
 // Configure AWS options
@@ -58,9 +61,9 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtSettings.Issuer,
-        ValidAudience = jwtSettings.Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret)),
+        ValidIssuer = jwtOptions.Issuer,
+        ValidAudience = jwtOptions.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Secret)),
         ClockSkew = TimeSpan.Zero
     };
 });
