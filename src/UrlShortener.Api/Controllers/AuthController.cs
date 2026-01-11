@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.ComponentModel.DataAnnotations;
 using UrlShortener.Api.DTOs;
 using UrlShortener.Api.Options;
 using UrlShortener.Api.Models;
@@ -75,6 +76,11 @@ namespace UrlShortener.Api.Controllers
                 return BadRequest(new { message = "Password must be at least 6 characters" });
             }
 
+            if (!new EmailAddressAttribute().IsValid(request.Email))
+            {
+                return BadRequest(new { message = "Invalid email format" });
+            }
+
             var user = new User
             {
                 Username = request.Username,
@@ -87,10 +93,10 @@ namespace UrlShortener.Api.Controllers
 
             if (!success)
             {
-                return BadRequest(new { message = "Username already exists" });
+                return Conflict(new { message = "Username or email already exists" });
             }
 
-            return Ok(new { message = "User registered successfully", userId = user.UserId });
+            return StatusCode(StatusCodes.Status201Created, new { message = "User registered successfully", userId = user.UserId });
         }
 
         [Authorize]

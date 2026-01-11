@@ -37,6 +37,7 @@ public class UrlController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateShortUrl([FromBody] CreateRequest req)
     {
+        // Validate if the input string is a valid absolute URL
         if (!Uri.IsWellFormedUriString(req.OriginalUrl, UriKind.Absolute))
             return BadRequest("Invalid URL");
 
@@ -120,6 +121,7 @@ public class UrlController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateUrl(string code, [FromBody] UpdateUrlRequest req)
     {
+        // Validate URL format
         if (!Uri.IsWellFormedUriString(req.OriginalUrl, UriKind.Absolute))
             return BadRequest("Invalid URL");
 
